@@ -1,0 +1,91 @@
+{
+    "name": "contenir/contenir-social-mezzio",
+    "description": "Mezzio adapter for contenir/contenir-social: services that write a site's profile links and a page's share buttons from the CMS's settings, and socialProfiles() and share() view helpers for laminas-view layouts.",
+    "type": "library",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "contenir",
+        "social",
+        "share",
+        "rel-me",
+        "mezzio"
+    ],
+    "homepage": "https://contenir.com.au",
+    "support": {
+        "issues": "https://github.com/contenir/contenir-social-mezzio/issues",
+        "source": "https://github.com/contenir/contenir-social-mezzio"
+    },
+    "require": {
+        "php": "~8.3.0 || ~8.4.0 || ~8.5.0",
+        "contenir/contenir-social": "^0.1",
+        "psr/container": "^1.1 || ^2.0"
+    },
+    "require-dev": {
+        "contenir/contenir-qa-tools": "0.1.x-dev",
+        "infection/infection": "^0.34.1",
+        "laminas/laminas-servicemanager": "^3.22",
+        "laminas/laminas-view": "^2.30",
+        "phpunit/phpunit": "^11.5.42"
+    },
+    "suggest": {
+        "contenir/contenir-resource": "Its PageMetadata, which ResourceMiddleware attaches to each routed page, can be passed to share() as it is",
+        "mezzio/mezzio-laminasviewrenderer": "To call socialProfiles() and share() from laminas-view layouts"
+    },
+    "autoload": {
+        "psr-4": {
+            "Contenir\\Social\\Mezzio\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Contenir\\Social\\Mezzio\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "check": [
+            "@cs-check",
+            "@static-analysis",
+            "@test",
+            "@test-integration",
+            "@mutation-test"
+        ],
+        "cs-check": [
+            "mago format --check",
+            "mago lint"
+        ],
+        "cs-fix": [
+            "mago format",
+            "mago lint --fix"
+        ],
+        "static-analysis": "mago analyze",
+        "test": "phpunit --colors=always --testsuite unit",
+        "test-integration": "phpunit --colors=always --testsuite integration",
+        "test-coverage": "phpunit --colors=always --coverage-clover clover.xml",
+        "mutation-test": "infection"
+    },
+    "config": {
+        "platform": {
+            "php": "8.3.99"
+        },
+        "sort-packages": true,
+        "allow-plugins": {
+            "infection/extension-installer": true
+        }
+    },
+    "extra": {
+        "laminas": {
+            "config-provider": "Contenir\\Social\\Mezzio\\ConfigProvider"
+        },
+        "branch-alias": {
+            "dev-main": "0.1.x-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/contenir/contenir-social"
+        }
+    ]
+}
