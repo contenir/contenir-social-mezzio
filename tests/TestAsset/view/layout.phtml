@@ -1,0 +1,12 @@
+<?php
+
+/**
+ * @var Laminas\View\Renderer\PhpRenderer $this
+ * @var Contenir\Social\Mezzio\Tests\TestAsset\PageMetadata $metadata
+ * @var ?string $nonce
+ */
+?>
+<header><?= $this->socialProfiles() ?></header>
+<main><?= $this->share($metadata, ['nonce' => $nonce]) ?></main>
+<footer><?= $this->socialProfiles(['block' => 'footer', 'labels' => true]) ?></footer>
+<script type="application/ld+json"><?= json_encode(['sameAs' => $this->plugin('socialProfiles')->sameAs()], JSON_UNESCAPED_SLASHES) ?></script>
